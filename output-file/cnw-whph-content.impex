@@ -1,0 +1,72 @@
+#=================================================================================================================================
+#================================================ STAGED ==================================================
+#=================================================================================================================================
+
+# Macros / Replacement Parameter definitions
+$contentCatalog=cnwContentCatalog
+$version=Staged
+
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=$version])[default=$contentCatalog:$version]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$siteResource=jar:au.com.cnw.initialdata.setup.InitialDataSystemSetup&/cnwinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$jarResourceCms=jar:au.com.cnw.initialdata.setup.InitialDataSystemSetup&/cnwinitialdata/import/cockpits/cmscockpit
+
+# Language
+$lang=en
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title;masterTemplate(uid,$contentCV);label; defaultPage[default='true']; approvalStatus(code)[default='approved']; homepage[default='false'];previewImage(code, $contentCV)
+;;workhardplayhardpage;Work Hard Play Hard;Work Hard Play Hard;ContentPage1Template;work-hard-play-hard;;;;
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;visible[default='true'];content[lang=en]
+;;workhardplayhardparagraph;Work Hard Play Hard;workhardplayhardparagraph;true;"Content"
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;CenterContentSlot-workhardplayhard;Center Content Slot for workhardplayhard;true;workhardplayhardparagraph
+;;RightContentSlot-workhardplayhard;Right Content Slot for workhardplayhard;true;
+;;LeftContentSlot-workhardplayhard;Left Content Slot for workhardplayhard;true;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true];contentSlot(uid,$contentCV)[unique=true]
+;;CenterContent-workhardplayhard;CenterContent;workhardplayhardpage;CenterContentSlot-workhardplayhard
+;;RightContent-workhardplayhard;RightContent;workhardplayhardpage;RightContentSlot-workhardplayhard
+;;LeftContent-workhardplayhard;LeftContent;workhardplayhardpage;LeftContentSlot-workhardplayhard      
+
+
+#=================================================================================================================================
+#================================================ ONLINE ==================================================
+#=================================================================================================================================
+
+# Macros / Replacement Parameter definitions
+$contentCatalog=cnwContentCatalog
+$version=Online
+
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=$version])[default=$contentCatalog:$version]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$siteResource=jar:au.com.cnw.initialdata.setup.InitialDataSystemSetup&/cnwinitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$jarResourceCms=jar:au.com.cnw.initialdata.setup.InitialDataSystemSetup&/cnwinitialdata/import/cockpits/cmscockpit
+
+# Language
+$lang=en
+
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;title;masterTemplate(uid,$contentCV);label; defaultPage[default='true']; approvalStatus(code)[default='approved']; homepage[default='false'];previewImage(code, $contentCV)
+;;workhardplayhardpage;Work Hard Play Hard;Work Hard Play Hard;ContentPage1Template;work-hard-play-hard;;;;
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;visible[default='true'];content[lang=en]
+;;workhardplayhardparagraph;Work Hard Play Hard;workhardplayhardparagraph;true;"Content"
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;CenterContentSlot-workhardplayhard;Center Content Slot for workhardplayhard;true;workhardplayhardparagraph
+;;RightContentSlot-workhardplayhard;Right Content Slot for workhardplayhard;true;
+;;LeftContentSlot-workhardplayhard;Left Content Slot for workhardplayhard;true;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true];contentSlot(uid,$contentCV)[unique=true]
+;;CenterContent-workhardplayhard;CenterContent;workhardplayhardpage;CenterContentSlot-workhardplayhard
+;;RightContent-workhardplayhard;RightContent;workhardplayhardpage;RightContentSlot-workhardplayhard
+;;LeftContent-workhardplayhard;LeftContent;workhardplayhardpage;LeftContentSlot-workhardplayhard      
